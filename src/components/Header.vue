@@ -16,11 +16,11 @@
                     </div> 
                 </div>
                 <ul class="menu">
-                    <li><router-link to="/">Productos</router-link></li>
+                    <li><router-link to="/all">Productos</router-link></li>
                     <li><router-link to="/woman">Mujer</router-link></li>
                     <li><router-link to="/men">Hombre</router-link></li>
                     <li><router-link to="/kids">Niños</router-link></li>
-                    <li><router-link to="/jewelry">Joyería</router-link></li>
+                    <li><router-link to="/baby">Bebé</router-link></li>
     
                 </ul>
             </nav>

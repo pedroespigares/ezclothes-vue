@@ -1,15 +1,6 @@
 <script setup>
-
-import Header from './Header.vue';
-import Footer from './Footer.vue';
-import ProductComponent from './ProductComponent.vue';
-import { collection, query, where  } from '@firebase/firestore';
-import { useCollection } from 'vuefire';
-import { db } from '../firebase.js';
-
-const productos = useCollection(query(collection(db, 'productos'), where('categoria', '==', 'hombre')));
-
-
+import Header from './Header.vue'
+import Footer from './Footer.vue'
 </script>
 
 <template>
@@ -17,9 +8,9 @@ const productos = useCollection(query(collection(db, 'productos'), where('catego
         <div class="container">
         <Header/>
         <section id="products">
-        <input id="categoryForSort" type="hidden" value="mujer">
+        <input id="categoryForSort" type="hidden" value="${realType}">
             <div class="products--text">
-                <h1>Hombre</h1>
+                <h1>Bebé</h1>
             </div>
             <div class="sortProducts">
             <p>Ordenar por: </p>
@@ -31,7 +22,6 @@ const productos = useCollection(query(collection(db, 'productos'), where('catego
                 <button class="sort--button">Ordenar</button>
             </div>
             <div class="products--container">
-                <ProductComponent v-for="producto in productos" :key="producto.id" :producto="producto"/>
             </div>
         </section>
         <Footer/>
