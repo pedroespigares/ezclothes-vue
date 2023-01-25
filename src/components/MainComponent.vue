@@ -1,5 +1,7 @@
 <script setup>
+import { useRoute } from "vue-router";
 
+const route = useRoute();
 </script>
 
 <template>
@@ -15,7 +17,7 @@
                 <h1>¡Bienvenido a EzClothes!</h1>
                 <p>En EzClothes encontrarás todo lo que necesitas para vestirte de la mejor manera. 
                     Tenemos una gran variedad de productos para que puedas elegir lo que más te guste.</p>
-                <button id="seeAllProductsButton">Ver todo</button>
+                <button id="seeAllProductsButton"><router-link to="/all">Ver todo</router-link></button>
             </div>
         </section>
         <section id="carrousel">

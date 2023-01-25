@@ -297,6 +297,11 @@ colocando sus elementos mediante otro grid */
     cursor: pointer;
 }
 
+.banner--text a{
+    text-decoration: none;
+    color: var(--background-color);
+}
+
 /* ---------------------------------------------------------------------------------------------- */
 
 /* Estilos para el carrousel de imagenes, colocandola respecto al grid del contenedor y dandole estilos */

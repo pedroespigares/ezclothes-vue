@@ -1,10 +1,19 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { productsCollection } from '../firebase.js';
+import { getAuth } from "firebase/auth";
 import { ref } from 'vue';
 
 const route = useRoute();
 const id = route.params.id;
+const auth = getAuth();
+const user = auth.currentUser;
+
+var userID = ref("")
+
+if(user){
+  userID.value = user.uid
+}
 
 const producto = productsCollection.value.find(
   (producto) => producto.id === id
@@ -22,6 +31,7 @@ function addProductToCart(product, size, cart) {
             categoria: product.categoria,
             talla: size,
             cantidad: 1,
+            userID: userID.value
         }
     
         let productExists = false;
