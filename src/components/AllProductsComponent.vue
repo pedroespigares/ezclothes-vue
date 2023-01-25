@@ -1,6 +1,4 @@
 <script setup>
-import Header from "./Header.vue";
-import Footer from "./Footer.vue";
 import ProductComponent from "./ProductComponent.vue";
 import { productsCollection } from "../firebase.js";
 
@@ -9,7 +7,6 @@ const productos = productsCollection;
 
 <template>
   <div class="container">
-    <Header />
     <section id="products">
       <div class="products--text">
         <h1>Todos los productos</h1>
@@ -22,6 +19,5 @@ const productos = productsCollection;
         />
       </div>
     </section>
-    <Footer />
   </div>
 </template>

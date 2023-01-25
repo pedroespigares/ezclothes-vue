@@ -59,7 +59,7 @@ const routes = [
         component: LoginComponent
     },
     {
-        path: '/register',
+        path: '/register-only-for-admins',
         component: RegisterComponent
     },
     {
@@ -73,7 +73,7 @@ const routes = [
         path: '/product/:id?',
         component: SingleProductComponent,
         props: true
-    }
+    },
 ]
 
 const router = createRouter({

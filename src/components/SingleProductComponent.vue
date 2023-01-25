@@ -1,6 +1,4 @@
 <script setup>
-import Header from "./Header.vue";
-import Footer from "./Footer.vue";
 import { useRoute } from "vue-router";
 import { productsCollection } from '../firebase.js';
 import { ref } from 'vue';
@@ -23,7 +21,7 @@ function addProductToCart(product, size, cart) {
             imagen: product.imagen,
             categoria: product.categoria,
             talla: size,
-            cantidad: 1
+            cantidad: 1,
         }
     
         let productExists = false;
@@ -46,7 +44,6 @@ function addProductToCart(product, size, cart) {
 
 <template>
   <div class="container">
-    <Header />
     <section id="single--product">
       <img :src="producto.imagen" :alt="producto.titulo" />
       <div class="product--info">
@@ -76,6 +73,5 @@ function addProductToCart(product, size, cart) {
         <button @click="addProductToCart(producto,talla,cart)" class="add-to-cart">Añadir al carrito</button>
       </div>
     </section>
-    <Footer />
   </div>
 </template>

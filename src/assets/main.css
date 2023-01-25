@@ -183,8 +183,8 @@ header > nav{
 ul.menu{
     display: flex;
 
-    gap: 3em;
-    font-size: 2.5rem;
+    gap: 2em;
+    font-size: 2.3rem;
     font-family: var(--title-font);
     padding: 0;
 }
@@ -194,7 +194,6 @@ ul.menu li{
 }
 
 ul.menu li a{
-    text-decoration: none;
     font-weight: var(--title-font-weight);
     color: var(--text-color);
     text-transform: uppercase;
@@ -209,6 +208,23 @@ ul.menu li a:hover{
     cursor: pointer;
     font-weight: 500;
     box-shadow: var(--box-shadow);
+}
+
+#username{
+    font-size: 2rem;
+    font-weight: var(--text-font-weight);
+    color: var(--hover-color);
+    background-color: var(--background-color);
+}
+
+#username:hover{
+    cursor: pointer;
+    color: var(--text-color);
+    transition: var(--transition-time);
+}
+
+header a {
+    text-decoration: none;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -752,7 +768,7 @@ añadiendo 2% al width de las estrellas */
 
 /* Estilos para el section del login y signup */
 
-.login_signup{
+.login_signup, .profile{
     grid-column: 1 / -1;
     grid-row: 10 / 64;
     display: flex;
@@ -761,7 +777,7 @@ añadiendo 2% al width de las estrellas */
     align-items: center;
 }
 
-.login--container { 
+.login--container, .profile--container { 
     grid-area: 1 / 1 / 2 / 2; 
     display: flex;
     flex-direction: column;
@@ -773,6 +789,7 @@ añadiendo 2% al width de las estrellas */
 .signup--container h1, 
 .product--info h1, 
 .banner--text h1,
+.profile--container h1,
 #products h1{
     text-align: center;
 }
@@ -813,7 +830,6 @@ añadiendo 2% al width de las estrellas */
     border-radius: 0.5rem;
     padding: 1rem 2rem;
     margin-top: 2rem;
-    display: none;
 }
 
 .login--container p#login--error{
@@ -842,7 +858,7 @@ input[type="email"]:invalid, input[type="password"]:invalid, input[type="tel"]:i
 }
 
 
-form button {
+form button, .profile--container button {
     font-size: 2.2rem;
     font-weight: var(--title-font-weight);
     color: var(--background-color);
@@ -853,7 +869,8 @@ form button {
     margin-top: 1rem;
 }
 
-form button:hover{
+
+form button:hover, .profile--container button:hover{
     background-color: var(--hover-color);
     transition: var(--transition-time);
     cursor: pointer;
@@ -1210,6 +1227,33 @@ form button:hover{
     color: var(--text-color);
 }
 
+/* Estilos del boton de google y github */
+.google-btn, .github-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    border: 1px solid var(--hover-color);
+    border-radius: 0.5rem;
+}
+
+.google-btn:hover, .github-btn:hover{
+    background-color: lightgray;
+    transition: var(--transition-time);
+    cursor: pointer;
+}
+
+.github-btn img{
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+p.google-btn-text, p.github-btn-text{
+    padding-bottom: 0 !important;
+}
+/* --------------------------------- */
 
 @media screen and (min-width: 1200px) and (max-width: 1600px){
 

@@ -6,6 +6,7 @@ defineProps(["producto"]);
 const router = useRouter();
 
 var cart = localStorage.cart ? JSON.parse(localStorage.cart) : [];
+cart = ref(cart);
 var quantitySelected = ref(1);
 
 function goToSingleProduct($id) {
@@ -28,7 +29,6 @@ function deleteProductFromCart(cart, id) {
     }
   });
   localStorage.cart = JSON.stringify(cart);
-  location.reload();
 }
 </script>
 

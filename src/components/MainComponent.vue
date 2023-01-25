@@ -1,12 +1,9 @@
 <script setup>
-    import Header from './Header.vue'
-    import Footer from './Footer.vue'
+
 </script>
 
 <template>
-    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
         <div class="container">
-        <Header />
         <section id="christmas">
             <img src="../assets/media/christmas.jpg" alt="Christmas">
         </section>
@@ -45,11 +42,9 @@
                 <p>Recibe las últimas novedades y ofertas de EzClothes.</p>
                 <form class="NL_form">
                     <input type="email" name="NL_mail" placeholder="Introduce tu email" required>
-                    <p id="NL--message">¡Consulte su correo!</p>
                     <button type="submit">Suscribirse</button>
                 </form>
             </div>
         </section>
-        <Footer />
     </div>
 </template>
