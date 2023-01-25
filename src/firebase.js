@@ -1,10 +1,12 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
+import { collection, getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
+import { getStorage } from 'firebase/storage'
+import { useCollection } from 'vuefire'
 // ... other firebase imports
 
 export const firebaseApp = initializeApp({
-apiKey: "AIzaSyA-gmRVaXpRcoEBG-lz-W10jgp9ZdhV1k4",
+  apiKey: "AIzaSyA-gmRVaXpRcoEBG-lz-W10jgp9ZdhV1k4",
   authDomain: "ezclothes-vue.firebaseapp.com",
   projectId: "ezclothes-vue",
   storageBucket: "ezclothes-vue.appspot.com",
@@ -15,3 +17,6 @@ apiKey: "AIzaSyA-gmRVaXpRcoEBG-lz-W10jgp9ZdhV1k4",
 // used for the firestore refs
 export const db = getFirestore(firebaseApp);
 export const auth = getAuth(firebaseApp);
+export const storage = getStorage(firebaseApp);
+
+export const productsCollection = useCollection(collection(db, 'productos'));

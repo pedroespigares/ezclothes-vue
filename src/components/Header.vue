@@ -25,9 +25,8 @@
                 </ul>
             </nav>
             <div class="login_cart">
-                <router-link to="/userAuth"><i class="fas fa-user"></i></router-link>
+                <router-link to="/login"><i class="fas fa-user"></i></router-link>
                 <router-link to="/cart"><i class="fas fa-shopping-cart"></i></router-link>
-                <i class="fa-solid fa-circle-half-stroke"></i>
             </div>
         </header>
 </template>

@@ -752,12 +752,13 @@ añadiendo 2% al width de las estrellas */
 
 /* Estilos para el section del login y signup */
 
-#login_signup{
+.login_signup{
     grid-column: 1 / -1;
     grid-row: 10 / 64;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .login--container { 
@@ -766,7 +767,6 @@ añadiendo 2% al width de las estrellas */
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-right: 1px solid var(--hover-color);
 }
 
 .login--container h1, 
@@ -798,12 +798,6 @@ añadiendo 2% al width de las estrellas */
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.signup--container h1, 
-.signup--container a, 
-.signup--container p{
-    opacity: 0.3;
 }
 
 .signup--container p{
@@ -847,10 +841,6 @@ input[type="email"]:invalid, input[type="password"]:invalid, input[type="tel"]:i
     border: 2px solid var(--button-color);
 }
 
-input:disabled{
-    background-color: lightgray;
-    opacity: 0.3;
-}
 
 form button {
     font-size: 2.2rem;
@@ -861,10 +851,6 @@ form button {
     border-radius: 0.5rem;
     padding: 2rem 3rem;
     margin-top: 1rem;
-}
-
-.signup--container button{
-    opacity: 0.3;
 }
 
 form button:hover{
