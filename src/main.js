@@ -14,6 +14,10 @@ import LoginComponent from './components/LoginComponent.vue'
 import RegisterComponent from './components/RegisterComponent.vue'
 import CartComponent from './components/CartComponent.vue'
 import SingleProductComponent from './components/SingleProductComponent.vue'
+import AdminPanelComponent from './components/productModification/AdminPanelComponent.vue'
+import CreateProductComponent from './components/productModification/CreateProductComponent.vue'
+import EditProductComponent from './components/productModification/EditProductComponent.vue'
+import NotAllowedComponent from './components/NotAllowedComponent.vue'
 import App from './App.vue'
 
 import './assets/main.css'
@@ -74,6 +78,31 @@ const routes = [
         component: SingleProductComponent,
         props: true
     },
+    {
+        path: '/not-allowed',
+        component: NotAllowedComponent
+    },
+    {
+        path: '/admin-panel',
+        component: AdminPanelComponent,
+        beforeEnter: (to, from) => {
+            return isLogged ? true : '/not-allowed'
+        }
+    },
+    {
+        path: '/admin-panel/create',
+        component: CreateProductComponent,
+        beforeEnter: (to, from) => {
+            return isLogged ? true : '/not-allowed'
+        }
+    }, 
+    {
+        path: '/admin-panel/edit/:id?',
+        component: EditProductComponent,
+        beforeEnter: (to, from) => {
+            return isLogged ? true : '/not-allowed'
+        }
+    }
 ]
 
 const router = createRouter({

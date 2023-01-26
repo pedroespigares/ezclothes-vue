@@ -1,18 +1,24 @@
 <script setup>
 import { useRoute } from "vue-router";
-import { productsCollection } from '../firebase.js';
+import { productsCollection } from "../firebase.js";
 import { getAuth } from "firebase/auth";
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const route = useRoute();
 const id = route.params.id;
 const auth = getAuth();
 const user = auth.currentUser;
 
-var userID = ref("")
+var userID = ref("");
+var isLogged = ref(false);
 
-if(user){
-  userID.value = user.uid
+// Variable para saber si se ha añadido el producto al carrito
+var addedToCart = ref(false);
+
+// Vamos a diferenciar si el usuario está logueado o no para mostrar el botón de añadir al carrito
+if (user) {
+  userID.value = user.uid;
+  isLogged.value = true;
 }
 
 const producto = productsCollection.value.find(
@@ -20,36 +26,48 @@ const producto = productsCollection.value.find(
 );
 
 var cart = localStorage.cart ? JSON.parse(localStorage.cart) : [];
+
+// Por defecto, la talla es XS
 var talla = ref("XS");
 
-function addProductToCart(product, size, cart) {
-        let createdProduct = {
-            id: product.id,
-            titulo: product.titulo,
-            precio: product.precio,
-            imagen: product.imagen,
-            categoria: product.categoria,
-            talla: size,
-            cantidad: 1,
-            userID: userID.value
-        }
-    
-        let productExists = false;
-    
-        cart.forEach(function(productInCart) {
-            if(productInCart.id == createdProduct.id && productInCart.size == createdProduct.size){
-                productInCart.quantity++;
-                productExists = true;
-            }
-        });
-    
-        if(!productExists){
-            cart.push(createdProduct);
-        }
-    
-        localStorage.cart = JSON.stringify(cart);
-    }
+function goToLogin() {
+  route.push("/login");
+}
 
+function addProductToCart(product, size, cart) {
+
+  // Creamos el producto junto al userID para poder filtrar el carrito por usuario
+  
+  let createdProduct = {
+    id: product.id,
+    titulo: product.titulo,
+    precio: product.precio,
+    imagen: product.imagen,
+    categoria: product.categoria,
+    talla: size,
+    cantidad: 1,
+    userID: userID.value,
+  };
+
+  let productExists = false;
+
+  cart.forEach(function (productInCart) {
+    if (
+      productInCart.id == createdProduct.id &&
+      productInCart.size == createdProduct.size
+    ) {
+      productInCart.quantity++;
+      productExists = true;
+    }
+  });
+
+  if (!productExists) {
+    cart.push(createdProduct);
+  }
+
+  addedToCart.value = true;
+  localStorage.cart = JSON.stringify(cart);
+}
 </script>
 
 <template>
@@ -80,7 +98,19 @@ function addProductToCart(product, size, cart) {
             <option value="XL">XL</option>
           </select>
         </div>
-        <button @click="addProductToCart(producto,talla,cart)" class="add-to-cart">Añadir al carrito</button>
+        <button
+          @click="addProductToCart(producto, talla, cart)"
+          v-if="isLogged"
+          class="add-to-cart"
+        >
+          Añadir al carrito
+        </button>
+        <button @click="goToLogin" v-else class="add-to-cart" disabled>
+          Inicia sesión para añadir al carrito
+        </button>
+        <p class="addedToCart" v-if="addedToCart">
+          ¡Producto añadido al carrito!
+        </p>
       </div>
     </section>
   </div>

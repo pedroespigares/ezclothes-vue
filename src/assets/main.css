@@ -156,7 +156,7 @@ header .logo:hover{
     transition: var(--transition-time);
 }
 
-header .fa-user, header .fa-shopping-cart, header .fa-circle-half-stroke{
+header .fa-right-to-bracket,header .fa-user, header .fa-shopping-cart, header .fa-circle-half-stroke{
     scale: 4;
     color: var(--text-color);
 }
@@ -169,11 +169,24 @@ header .login_cart{
     place-items: center;
 }
 
-header .fa-user:hover, .fa-shopping-cart:hover, header .fa-circle-half-stroke:hover{
+header .fa-right-to-bracket:hover, .fa-user:hover, .fa-shopping-cart:hover, header .fa-circle-half-stroke:hover{
     color: var(--hover-color);
     transition: var(--transition-time);
     cursor: pointer;
     scale: 5;
+}
+
+header .fa-shopping-cart::after{
+    content:attr(value);
+    font-size: 0.7rem;
+    color: #fff;
+    background: var(--hover-color);
+    border-radius:50%;
+    padding: 0 3px;
+    position:relative;
+    left:-8px;
+    top:-10px;
+    opacity:0.9;
 }
 
 header > nav{
@@ -766,7 +779,12 @@ añadiendo 2% al width de las estrellas */
     cursor: pointer;
 }
 
-
+p.addedToCart{
+    font-size: 2rem;
+    font-weight: var(--text-font-weight);
+    color: var(--hover-color);
+    padding-top: 2rem;
+}
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -881,7 +899,17 @@ form button:hover, .profile--container button:hover{
     cursor: pointer;
 }
 
+.add-to-cart:disabled{
+    background-color: var(--button-color);
+    opacity: 0.5;
+}
 
+.add-to-cart:disabled:hover{
+    background-color: var(--button-color);
+    box-shadow: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 
 
 
@@ -1001,7 +1029,7 @@ form button:hover, .profile--container button:hover{
     list-style: none;
 }
 
-.cart--list li{
+.cart--list, .products-list li{
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -1011,11 +1039,11 @@ form button:hover, .profile--container button:hover{
     border-bottom: 1px solid var(--hover-color);
 }
 
-.cart--list li img{
+.cart--list li img, .products-list li img{
     width: 10rem;
 }
 
-.cart--list li h3{
+.cart--list li h3, .products-list li h3{
     font-size: 2.7rem;
     font-weight: var(--title-weight);
     text-transform: uppercase;
@@ -1024,21 +1052,21 @@ form button:hover, .profile--container button:hover{
     font-family: var(--title-font);
 }
 
-.cart--list li h3:hover{
+.cart--list li h3:hover, .products-list li h3:hover{
     text-decoration: underline;
     cursor: pointer;
 }
 
-.cart--list li p{
+.cart--list li p, .products-list li p{
     padding-bottom: 0;
 }
 
-.cart--list li p.price{
+.cart--list li p.price, .products-list li p.price{
     font-size: 3rem !important;
     font-weight: 600 !important;
 }
 
-.cart--list li input{
+.cart--list li input, .products-list li input{
     width: 5rem;
     font-size: 3rem;
     font-weight: var(--text-font-weight);
@@ -1049,15 +1077,15 @@ form button:hover, .profile--container button:hover{
     background-color: var(--background-color);
 }
 
-.cart--list li p{
+.cart--list li p, .products-list li p{
     font-size: 3rem;
 }
 
-.cart--list li input:focus{
+.cart--list li input:focus, .products-list li input:focus{
     outline: 1px solid var(--hover-color);
 }
 
-.cart--list li button, .cart--list li button.update-from-cart{
+.cart--list li button, .cart--list li button.update-from-cart, .products-list li button{
     font-size: 2.2rem;
     font-weight: var(--title-font-weight);
     color: var(--background-color);
@@ -1067,36 +1095,37 @@ form button:hover, .profile--container button:hover{
     padding: 1rem 2rem;
 }
 
-.cart--list li button:hover{
+.cart--list li button:hover, .products-list li button:hover{
     background-color: var(--hover-color);
     transition: var(--transition-time);
     cursor: pointer;
 }
 
-.cart--list li button.update-from-cart{
+.cart--list li button.update-from-cart, .cart--list li button.update-from-cart:hover{
     background-color: lightgreen;
     color: var(--text-color);
 }
 
-.cart--list li button.update-from-cart:hover{
+.cart--list li button.update-from-cart:hover, .cart--list li button.update-from-cart:hover{
     background-color: rgb(0, 231, 0);
     transition: var(--transition-time);
     cursor: pointer;
 }
 
-.fa-trash, .fa-arrows-rotate{
+.fa-trash, .fa-pen-nib{
     scale: 4;
+    transition: var(--transition-time);
     color: var(--text-color);
 }
 
-.fa-trash:hover, .fa-arrows-rotate:hover{
+.fa-trash:hover, .fa-pen-nib:hover{
     color: var(--hover-color);
     transition: var(--transition-time);
     cursor: pointer;
     scale: 5;
 }
 
-.fa-arrows-rotate:hover{
+.fa-pen-nib:hover{
     color: lightgreen;
 }
 
@@ -1273,7 +1302,7 @@ p.google-btn-text, p.github-btn-text{
       font-size: 2rem;
   }
 
-  header .fa-user, header .fa-shopping-cart, header .fa-circle-half-stroke{
+  header .fa-right-to-bracket, header .fa-user, header .fa-shopping-cart, header .fa-circle-half-stroke{
       scale: 3;
   }
 

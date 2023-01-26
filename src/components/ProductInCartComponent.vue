@@ -1,33 +1,28 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-defineProps(["producto"]);
+const props = defineProps(["producto", "carrito"]);
 
 const router = useRouter();
 
-var cart = localStorage.cart ? JSON.parse(localStorage.cart) : [];
-cart = ref(cart);
-var quantitySelected = ref(1);
+var quantitySelected = ref(props.producto.cantidad);
 
 function goToSingleProduct($id) {
   router.push(`/product/${$id}`);
 }
 
 function updateQuantiy(cart, id, newQuantity) {
-  cart.forEach(function (productInCart) {
-    if (productInCart.id == id) {
-      productInCart.quantity = newQuantity;
+  cart.forEach(function (product) {
+    if (product.id == id) {
+      product.cantidad = newQuantity;
     }
   });
   localStorage.cart = JSON.stringify(cart);
+  router.push("/cart");
 }
 
-function deleteProductFromCart(cart, id) {
-  cart.forEach(function (productInCart, index) {
-    if (productInCart.id == id) {
-      cart.splice(index, 1);
-    }
-  });
+function deleteProductFromCart(cart, producto) {
+  cart.splice(cart.indexOf(producto), 1);
   localStorage.cart = JSON.stringify(cart);
 }
 </script>
@@ -49,10 +44,13 @@ function deleteProductFromCart(cart, id) {
     />
     <div class="actions">
       <i
-        @click="updateQuantiy(cart, producto.id, quantitySelected)"
+        @click="updateQuantiy(carrito, producto.id, quantitySelected)"
         class="fa-solid fa-arrows-rotate"
       ></i>
-      <i @click="deleteProductFromCart(cart, producto.id)" class="fa-solid fa-trash"></i>
+      <i
+        @click="deleteProductFromCart(carrito, producto)"
+        class="fa-solid fa-trash"
+      ></i>
     </div>
   </li>
 </template>
