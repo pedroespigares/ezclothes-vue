@@ -1029,7 +1029,7 @@ form button:hover, .profile--container button:hover{
     list-style: none;
 }
 
-.cart--list, .products-list li{
+.cart--list li, .products-list li{
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -1112,20 +1112,20 @@ form button:hover, .profile--container button:hover{
     cursor: pointer;
 }
 
-.fa-trash, .fa-pen-nib{
+.fa-trash, .fa-pen-nib, .fa-arrows-rotate{
     scale: 4;
     transition: var(--transition-time);
     color: var(--text-color);
 }
 
-.fa-trash:hover, .fa-pen-nib:hover{
+.fa-trash:hover, .fa-pen-nib:hover, .fa-arrows-rotate:hover{
     color: var(--hover-color);
     transition: var(--transition-time);
     cursor: pointer;
     scale: 5;
 }
 
-.fa-pen-nib:hover{
+.fa-pen-nib:hover, .fa-arrows-rotate:hover{
     color: lightgreen;
 }
 
