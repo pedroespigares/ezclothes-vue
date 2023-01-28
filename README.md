@@ -1,6 +1,13 @@
 # ezClothesVue
 
-This template should help get you started developing with Vue 3 in Vite.
+## Puntos importantes sobre el proyecto
+<ul>
+<li><a href="https://ezclothes-vue.web.app/register-only-for-admins">Enlace de registro</a>
+<li>He incluido un registro/logeo con GitHub también, pero hay una cosa importante sobre ello.
+Si has creado una cuenta con Google, <b>NO</b> podrás crear una cuenta con GitHub que utilice el mismo correo que la cuenta de Google y viceversa.
+Es decir, si la cuenta de Google y de Github utilizar el mismo correo, solo podrás crear una cuenta con uno de los dos.
+</li>
+</ul>
 
 ## Recommended IDE Setup
 
