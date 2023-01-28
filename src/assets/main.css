@@ -165,7 +165,7 @@ header .login_cart{
     grid-area: 1 / 9 / 2 / 12; 
 
     display: flex;
-    gap: 10rem;
+    gap: 5rem;
     place-items: center;
 }
 
@@ -176,18 +176,6 @@ header .fa-right-to-bracket:hover, .fa-user:hover, .fa-shopping-cart:hover, head
     scale: 5;
 }
 
-header .fa-shopping-cart::after{
-    content:attr(value);
-    font-size: 0.7rem;
-    color: #fff;
-    background: var(--hover-color);
-    border-radius:50%;
-    padding: 0 3px;
-    position:relative;
-    left:-8px;
-    top:-10px;
-    opacity:0.9;
-}
 
 header > nav{
     grid-area: 1 / 6 / 2 / 7; 
@@ -867,7 +855,7 @@ form {
     gap: 2rem;
 }
 
-form input:focus{
+form input:focus, form textarea:focus, form select:focus, form button:focus {
     outline: none;
     border: 1px solid var(--hover-color);
 }
@@ -899,18 +887,9 @@ form button:hover, .profile--container button:hover{
     cursor: pointer;
 }
 
-.add-to-cart:disabled{
-    background-color: var(--button-color);
-    opacity: 0.5;
+button.add-to-cart{
+    margin-top: 5rem;
 }
-
-.add-to-cart:disabled:hover{
-    background-color: var(--button-color);
-    box-shadow: none;
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -1298,8 +1277,8 @@ p.google-btn-text, p.github-btn-text{
   }
 
   ul.menu{
-      gap: 2.5em;
-      font-size: 2rem;
+      gap: 2em;
+      font-size: 1.5rem;
   }
 
   header .fa-right-to-bracket, header .fa-user, header .fa-shopping-cart, header .fa-circle-half-stroke{

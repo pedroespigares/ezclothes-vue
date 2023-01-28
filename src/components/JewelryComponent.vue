@@ -3,7 +3,7 @@ import ProductComponent from "./ProductComponent.vue";
 import { productsCollection } from "../firebase.js";
 
 const productos = productsCollection.value.filter(
-  (producto) => producto.categoria === "niño"
+  (producto) => producto.categoria === "joyeria"
 );
 </script>
 
@@ -11,7 +11,7 @@ const productos = productsCollection.value.filter(
   <div class="container">
     <section id="products">
       <div class="products--text">
-        <h1>Niños</h1>
+        <h1>Joyería</h1>
       </div>
       <div class="products--container">
         <ProductComponent

@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  GithubAuthProvider,
 } from "firebase/auth";
 import { auth } from "../firebase";
 import { ref } from "vue";
@@ -49,6 +50,27 @@ function loginGoogle() {
       const email = error.email;
     });
 }
+
+function loginGithub() {
+  const provider = new GithubAuthProvider();
+  signInWithPopup(auth, provider)
+    .then((userCredential) => {
+      // The signed-in user info.
+      const user = userCredential.user;
+      router.push("/");
+      // ...
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.email;
+      // The AuthCredential type that was used.
+      const credential = GithubAuthProvider.credentialFromError(error);
+      // ...
+    });
+}
 </script>
 
 <template>
@@ -82,6 +104,15 @@ function loginGoogle() {
               />
             </div>
             <p class="google-btn-text"><b>Iniciar con Google</b></p>
+          </div>
+          <div @click="loginGithub()" class="github-btn">
+            <div class="github-icon-wrapper">
+              <img
+                class="github-icon"
+                src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+              />
+            </div>
+            <p class="github-btn-text"><b>Iniciar con Github</b></p>
           </div>
           <p v-if="isWrong" id="login--error">
             Usuario o contraseña incorrectos

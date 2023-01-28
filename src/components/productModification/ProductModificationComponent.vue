@@ -2,16 +2,20 @@
 import { useRouter } from "vue-router";
 import { db } from "../../firebase";
 import { doc, deleteDoc } from "@firebase/firestore";
-defineProps(["producto"]);
+import { getStorage, ref as ref2, deleteObject } from "@firebase/storage";
+const props = defineProps(["producto"]);
 
 const router = useRouter();
+const storage = getStorage();
+const desertRef = ref2(storage, props.producto.imagen);
 
 function deleteProductFromDB(producto) {
-  // Confirmación de eliminación para evitar pulsaciones accidentales
+  // Confirmación de eliminación para evitar borrarlo sin querer
   let confirmDelete = confirm(
     "¿Estás seguro de que quieres eliminar este producto?"
   );
   if (confirmDelete) deleteDoc(doc(db, "productos", producto.id));
+  deleteObject(desertRef);
 }
 
 function goToSingleProduct($id) {

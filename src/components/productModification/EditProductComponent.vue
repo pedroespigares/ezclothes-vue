@@ -1,21 +1,77 @@
 <script setup>
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { productsCollection } from "../../firebase.js";
+import { updateDoc, doc } from "@firebase/firestore";
+import {
+  getStorage,
+  ref as ref2,
+  uploadBytes,
+  getDownloadURL,
+} from "firebase/storage";
+import { db } from "../../firebase.js";
+
 import { ref } from "vue";
 
 const route = useRoute();
+const router = useRouter();
+
+// Como haciamos antes, obtenemos el id del producto a editar mediante la ruta
+
 const id = route.params.id;
+const storage = getStorage();
 
 const producto = productsCollection.value.find(
   (producto) => producto.id === id
 );
+
+const titulo = ref(producto.titulo);
+const categoria = ref(producto.categoria);
+const descripcion = ref(producto.descripcion);
+const precio = ref(producto.precio);
+const valoraciones = ref(producto.valoraciones);
+const puntuacion = ref(producto.puntuacion);
+const imagen = ref(producto.imagen);
+
+function uploadImage(e) {
+  const file = e.target.files[0];
+  const storageRef = ref2(storage, file.name);
+  uploadBytes(storageRef, file).then(() => {
+    getDownloadURL(storageRef).then((url) => {
+      imagen.value = url;
+    });
+  });
+}
+
+function updateProduct(event){
+  event.preventDefault();
+  const docRef = doc(db, "productos", id)
+  if(imagen.value != typeof String){
+    imagen.value = producto.imagen
+  }
+  var updatedProduct ={
+    titulo: titulo.value,
+    categoria: categoria.value,
+    descripcion: descripcion.value,
+    precio: precio.value,
+    valoraciones: valoraciones.value,
+    puntuacion: puntuacion.value,
+    imagen: imagen.value,
+  }
+  updateDoc(docRef, updatedProduct)
+  .then(() => {
+    router.push("/admin-panel");
+  })
+}
 </script>
 
 <template>
   <div class="container">
     <section class="editProduct">
       <div class="edit--container">
-        <h1>Editar producto</h1>
+        <div class="edit--container--title">
+          <h1>Editar producto</h1>
+          <img :src="producto.imagen" alt="imagen" />
+        </div>
         <form class="editForm" method="POST">
           <input
             name="titulo"
@@ -26,8 +82,8 @@ const producto = productsCollection.value.find(
             <option value="" selected disabled hidden>Categoria</option>
             <option value="mujer">Mujer</option>
             <option value="hombre">Hombre</option>
-            <option value="niño">Niño</option>
-            <option value="bebe">Bebe</option>
+            <option value="joyeria">Joyeria</option>
+            <option value="accesorios">Accesorios</option>
           </select>
           <textarea
             name="descripcion"
@@ -64,8 +120,8 @@ const producto = productsCollection.value.find(
             accept="image/*"
             @change="uploadImage($event)"
           />
-          <button @click="saveProduct($event)" type="submit">
-            Crear Producto
+          <button @click="updateProduct($event)" type="submit">
+            Actualizar producto
           </button>
         </form>
       </div>
@@ -113,6 +169,7 @@ const producto = productsCollection.value.find(
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 0 10px;
+  font-family: var(--font-family);
 }
 .editForm button {
   width: 100%;
@@ -127,5 +184,17 @@ const producto = productsCollection.value.find(
 .editForm button:hover {
   background-color: var(--hover-color);
   box-shadow: var(--box-shadow);
+}
+
+.edit--container--title{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.edit--container--title img{
+  width: 10%;
+  object-fit: cover;
 }
 </style>

@@ -36,6 +36,9 @@ import ProductModificationComponent from "./ProductModificationComponent.vue";
   justify-content: center;
   width: 100%;
   height: 100%;
+  margin-top: 5rem;
+  margin-bottom: 10rem;
+  gap: 5rem;
 }
 
 .products--menu {

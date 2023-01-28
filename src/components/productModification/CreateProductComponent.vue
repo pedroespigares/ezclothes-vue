@@ -25,7 +25,7 @@ const storage = getStorage();
 
 function uploadImage(e) {
   const file = e.target.files[0];
-  const storageRef = ref2(storage, file.name);
+  const storageRef = ref2(storage, `Products/${file.name}`);
   uploadBytes(storageRef, file).then(() => {
     getDownloadURL(storageRef).then((url) => {
       imagen.value = url;
@@ -56,15 +56,6 @@ function saveProduct(event) {
     .catch((error) => {
       console.log(error);
     });
-
-  //   Limpiamos los campos del formulario
-  titulo.value = "";
-  categoria.value = "";
-  descripcion.value = "";
-  precio.value = "";
-  valoraciones.value = "";
-  puntuacion.value = "";
-  imagen.value = "";
 }
 </script>
 <template>
@@ -77,18 +68,20 @@ function saveProduct(event) {
             name="titulo"
             placeholder="Titulo de producto"
             v-model="titulo"
+            required
           />
-          <select name="categoria" v-model="categoria">
+          <select name="categoria" v-model="categoria" required>
             <option value="" selected disabled hidden>Categoria</option>
             <option value="mujer">Mujer</option>
             <option value="hombre">Hombre</option>
-            <option value="niño">Niño</option>
-            <option value="bebe">Bebe</option>
+            <option value="joyeria">Joyería</option>
+            <option value="accesorios">Accesorios</option>
           </select>
           <textarea
             name="descripcion"
             placeholder="Descripción"
             v-model="descripcion"
+            required
           ></textarea>
           <input
             name="precio"
@@ -97,6 +90,7 @@ function saveProduct(event) {
             step="0.01"
             min="0"
             v-model="precio"
+            required
           />
           <input
             name="valoraciones"
@@ -104,6 +98,7 @@ function saveProduct(event) {
             type="number"
             min="0"
             v-model="valoraciones"
+            required
           />
           <input
             name="puntuacion"
@@ -113,6 +108,7 @@ function saveProduct(event) {
             min="0"
             max="5"
             v-model="puntuacion"
+            required
           />
           <!-- Este input subirá la imagen a Firestore -->
           <input
@@ -170,6 +166,7 @@ function saveProduct(event) {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 0 10px;
+  font-family: var(--font-family);
 }
 .createForm button {
   width: 100%;
@@ -184,5 +181,9 @@ function saveProduct(event) {
 .createForm button:hover {
   background-color: var(--hover-color);
   box-shadow: var(--box-shadow);
+}
+
+.createForm p{
+  color: green;
 }
 </style>

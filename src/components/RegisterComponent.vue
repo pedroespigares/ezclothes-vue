@@ -51,8 +51,8 @@ function registerGoogle() {
     });
 }
 
-// Registro con GitHub
-function registerGitHub() {
+// Registro con Github
+function registerGithub() {
   const provider = new GithubAuthProvider();
   signInWithPopup(auth, provider)
     .then((userCredential) => {
@@ -67,6 +67,9 @@ function registerGitHub() {
       const errorMessage = error.message;
       // The email of the user's account used.
       const email = error.email;
+      // The AuthCredential type that was used.
+      const credential = GithubAuthProvider.credentialFromError(error);
+      // ...
     });
 }
 
@@ -115,14 +118,14 @@ function goToLogin() {
             </div>
             <p class="google-btn-text"><b>Crear con Google</b></p>
           </div>
-          <div @click="registerGitHub()" class="github-btn">
+          <div @click="registerGithub()" class="github-btn">
             <div class="github-icon-wrapper">
               <img
                 class="github-icon"
-                src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+                src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
               />
             </div>
-            <p class="github-btn-text"><b>Crear con GitHub</b></p>
+            <p class="github-btn-text"><b>Crear con Github</b></p>
           </div>
           <button @click="register($event)" type="submit">Crear cuenta</button>
         </form>
