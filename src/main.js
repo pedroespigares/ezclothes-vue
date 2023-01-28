@@ -25,6 +25,12 @@ import App from './App.vue'
 
 import './assets/main.css'
 
+
+window.onload = function() {
+    document.getElementsByTagName('body')[0].style.opacity = '1';
+    document.getElementsByClassName('lds-ring')[0].style.display = 'none';
+};
+
 var isLogged = false;
 
 // -----------------------------------------------

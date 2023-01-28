@@ -23,7 +23,7 @@ function register(event) {
       const user = userCredential.user;
       email.value = "";
       psw.value = "";
-      router.push("/login");
+      router.push("/");
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -102,7 +102,6 @@ function goToLogin() {
             type="password"
             placeholder="Contraseña"
             v-model="psw"
-            pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
             title="UpperCase, LowerCase, Number/SpecialChar and min 8 Chars"
             required
           />

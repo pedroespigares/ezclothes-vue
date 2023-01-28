@@ -20,13 +20,16 @@ const puntuacion = ref("");
 const imagen = ref();
 
 const storage = getStorage();
+const uploaded = ref(false);
 
 // Funcion para subir imagenes a Firebase Storage, la cual se ejecuta al seleccionar una imagen y guarda la url en la variable imagen
+// Hacemos que la variable uploaded sea true para poder guardar el producto en Firebase para evitar errores
 
 function uploadImage(e) {
   const file = e.target.files[0];
   const storageRef = ref2(storage, `Products/${file.name}`);
   uploadBytes(storageRef, file).then(() => {
+    uploaded.value = true;
     getDownloadURL(storageRef).then((url) => {
       imagen.value = url;
     });
@@ -37,7 +40,6 @@ function uploadImage(e) {
 
 function saveProduct(event) {
   event.preventDefault();
-
   //   Creamos un objeto con los datos del producto y lo guardamos en la coleccion productos de Firebase
   const newProduct = {
     titulo: titulo.value,
@@ -116,8 +118,13 @@ function saveProduct(event) {
             type="file"
             accept="image/*"
             @change="uploadImage($event)"
+            required
           />
-          <button @click="saveProduct($event)" type="submit">
+          <button
+            @click="saveProduct($event)"
+            type="submit"
+            :disabled="!uploaded"
+          >
             Crear Producto
           </button>
         </form>
@@ -178,12 +185,19 @@ function saveProduct(event) {
   color: #fff;
   cursor: pointer;
 }
+.create--container button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.create--container button:disabled:hover {
+  box-shadow: none;
+}
 .createForm button:hover {
   background-color: var(--hover-color);
   box-shadow: var(--box-shadow);
 }
 
-.createForm p{
+.createForm p {
   color: green;
 }
 </style>

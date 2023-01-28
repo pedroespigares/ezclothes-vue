@@ -11,51 +11,24 @@ function goToSingleProduct(id) {
 }
 
 function updateProducto(productID, productSize, newQuantity) {
-  cart.value.forEach(producto => {
-    if(producto.id == productID && producto.talla == productSize){
+  cart.value.forEach((producto) => {
+    if (producto.id == productID && producto.talla == productSize) {
       producto.cantidad = newQuantity;
     }
-  })
+  });
   localStorage.cart = JSON.stringify(cart.value);
 }
 
-function deleteProductFromCart(productID, productSize){
-  cart.value.forEach(producto => {
-    if(producto.id == productID && producto.talla == productSize){
+function deleteProductFromCart(productID, productSize) {
+  cart.value.forEach((producto) => {
+    if (producto.id == productID && producto.talla == productSize) {
       cart.value.splice(cart.value.indexOf(producto), 1);
     }
-  })
+  });
   localStorage.cart = JSON.stringify(cart.value);
 }
 
 var quantitySelected = ref(parseInt(props.producto.cantidad));
-
-// import { ref } from "vue";
-// import { useRouter } from "vue-router";
-// const props = defineProps(["producto", "carrito"]);
-
-// const router = useRouter();
-
-// var quantitySelected = ref(props.producto.cantidad);
-
-// function goToSingleProduct($id) {
-//   router.push(`/product/${$id}`);
-// }
-
-// function updateQuantiy(cart, id, newQuantity) {
-//   cart.forEach(function (product) {
-//     if (product.id == id) {
-//       product.cantidad = newQuantity;
-//     }
-//   });
-//   localStorage.cart = JSON.stringify(cart);
-//   router.push("/cart");
-// }
-
-// function deleteProductFromCart(cart, producto) {
-//   cart.splice(cart.indexOf(producto), 1);
-//   localStorage.cart = JSON.stringify(cart);
-// }
 </script>
 
 <template>

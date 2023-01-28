@@ -4,6 +4,7 @@
 </script>
 
 <template>
+  <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
   <Header />
   <router-view/>
   <Footer />

@@ -13,13 +13,13 @@ const productos = productsCollection.value.filter(
       <div class="products--text">
         <h1>Accesorios</h1>
       </div>
-        <div class="products--container">
-          <ProductComponent
-            v-for="producto in productos"
-            :key="producto.id"
-            :producto="producto"
-          />
-        </div>
+      <div class="products--container">
+        <ProductComponent
+          v-for="producto in productos"
+          :key="producto.id"
+          :producto="producto"
+        />
+      </div>
     </section>
   </div>
 </template>

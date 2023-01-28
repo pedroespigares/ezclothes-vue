@@ -1,25 +1,25 @@
 <script setup>
 import ProductInCartComponent from "./ProductInCartComponent.vue";
 import { cart } from "../main.js";
-import { useRouter} from "vue-router";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-function calculateSubtotal(){
+function calculateSubtotal() {
   var subtotal = 0;
-  for (let product of cart.value){
+  for (let product of cart.value) {
     subtotal += product.precio * product.cantidad;
   }
   return subtotal;
 }
 
-function calculateTotal(){
-  var subtotal = calculateSubtotal()
+function calculateTotal() {
+  var subtotal = calculateSubtotal();
   var total = subtotal + 1.2;
   return total.toFixed(2);
 }
 
-function goToCheckout(){
+function goToCheckout() {
   router.push("/checkout");
 }
 </script>

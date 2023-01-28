@@ -13,7 +13,6 @@ const user = auth.currentUser;
 
 var isClothes = ref(false);
 
-
 var userID = ref("");
 var isLogged = ref(false);
 
@@ -30,7 +29,9 @@ const producto = productsCollection.value.find(
   (producto) => producto.id === id
 );
 
-if(producto.categoria == "mujer" || producto.categoria == "hombre") {
+// Si el producto es de mujer o de hombre, es ropa y por tanto, se mostrará el select de tallas
+
+if (producto.categoria == "mujer" || producto.categoria == "hombre") {
   isClothes.value = true;
 }
 
@@ -42,9 +43,8 @@ function goToLogin() {
 }
 
 function addProductToCart(product, size) {
-
   // Creamos el producto junto al userID para poder filtrar el carrito por usuario
-  if(product.categoria == "joyeria" || product.categoria == "accesorios") {
+  if (product.categoria == "joyeria" || product.categoria == "accesorios") {
     var talla = "";
   } else {
     var talla = size;

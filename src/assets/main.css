@@ -49,6 +49,10 @@ body.dark header ul.menu li a:hover{
     color: var(--text-color);
 }
 
+body{
+    opacity: 0.3;
+}
+
 /* ---------------------------------------------------------------------------------------------- */
 /* Estilos por defecto de ciertas etiquetas */
 
@@ -596,7 +600,7 @@ añadiendo 2% al width de las estrellas */
 }
 
 .lds-ring {
-    display: none;
+    /* display: none; */
     position: fixed;
     top: calc(50% - 6.4rem);
     left: calc(50% - 6.4rem);

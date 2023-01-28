@@ -42,13 +42,13 @@ function uploadImage(e) {
   });
 }
 
-function updateProduct(event){
+function updateProduct(event) {
   event.preventDefault();
-  const docRef = doc(db, "productos", id)
-  if(imagen.value != typeof String){
-    imagen.value = producto.imagen
+  const docRef = doc(db, "productos", id);
+  if (imagen.value != typeof String) {
+    imagen.value = producto.imagen;
   }
-  var updatedProduct ={
+  var updatedProduct = {
     titulo: titulo.value,
     categoria: categoria.value,
     descripcion: descripcion.value,
@@ -56,11 +56,10 @@ function updateProduct(event){
     valoraciones: valoraciones.value,
     puntuacion: puntuacion.value,
     imagen: imagen.value,
-  }
-  updateDoc(docRef, updatedProduct)
-  .then(() => {
+  };
+  updateDoc(docRef, updatedProduct).then(() => {
     router.push("/admin-panel");
-  })
+  });
 }
 </script>
 
@@ -186,14 +185,14 @@ function updateProduct(event){
   box-shadow: var(--box-shadow);
 }
 
-.edit--container--title{
+.edit--container--title {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
 }
 
-.edit--container--title img{
+.edit--container--title img {
   width: 10%;
   object-fit: cover;
 }
