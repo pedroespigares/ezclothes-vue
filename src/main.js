@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { auth } from './firebase';
-import { getAuth } from 'firebase/auth';
 import { ref } from 'vue';
 import { onAuthStateChanged } from 'firebase/auth';
 import { firebaseApp } from './firebase'
@@ -21,6 +20,7 @@ import AdminPanelComponent from './components/productModification/AdminPanelComp
 import CreateProductComponent from './components/productModification/CreateProductComponent.vue'
 import EditProductComponent from './components/productModification/EditProductComponent.vue'
 import NotAllowedComponent from './components/NotAllowedComponent.vue'
+import NotFoundComponent from './components/NotFoundComponent.vue'
 import App from './App.vue'
 
 import './assets/main.css'
@@ -128,6 +128,10 @@ const routes = [
         beforeEnter: (to, from) => {
             return isLogged ? true : '/not-allowed'
         }
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        component: NotFoundComponent
     }
 ]
 
